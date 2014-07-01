@@ -24,7 +24,7 @@
         var data = hljs.highlight(doc.highlight, doc.code);
         this.highlightedCode = ko.observable(hljs.fixMarkup(data.value));
       } else {
-        this.highlightedCode = doc.code;
+        this.highlightedCode = doc.code.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");;
       }
       
       this.lineNumbers = ko.observableArray();
