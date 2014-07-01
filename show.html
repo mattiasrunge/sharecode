@@ -1,3 +1,11 @@
+<div class="code-details">
+  Highlight <strong data-bind="text: highlight"></strong>
+  <span class="pull-right">
+    Created <strong data-bind="text: created"></strong>
+    &nbsp;&bull;&nbsp;
+    Expires <strong data-bind="text: expires"></strong>
+  </span>
+</div>
 <table class="code-table">
   <tbody>
     <tr>
@@ -27,6 +35,9 @@
         this.highlightedCode = doc.code.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");;
       }
       
+      this.created = ko.observable(doc.created);
+      this.expires = ko.observable(doc.expires);
+      this.highlight = ko.observable(doc.highlight);
       this.lineNumbers = ko.observableArray();
       
       for (var n = 1; n <= doc.code.split(/\r\n|\r|\n/).length; n++) {
