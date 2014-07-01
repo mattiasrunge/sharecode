@@ -36,7 +36,7 @@ db.open(function(error, mongoDb) {
   app.use(compression({ threshold: 512 }));
 
   app.get(/^\/(index\.html)?$/, function(req, res) {
-    renderTemplate(res, "index.html");
+    renderTemplate(res, "publish.html");
   });
   
   app.get("/policy", function(req, res) {
@@ -61,7 +61,7 @@ db.open(function(error, mongoDb) {
       
       var doc = {
         _id: uuid.v4(),
-        code: req.body.code.substr(0, 1024),
+        code: req.body.code.substr(0, 10240),
         highlight: req.body.highlight,
         lifetime: req.body.lifetime,
         created: new Date()
