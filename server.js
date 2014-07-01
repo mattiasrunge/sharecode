@@ -109,7 +109,7 @@ db.open(function(error, mongoDb) {
     });
   });
 
-  app.listen(3000);
+  app.listen(config.http.port);
   
   function expire() {
     console.log("Running cleanup at " + moment().format());

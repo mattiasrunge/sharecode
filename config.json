@@ -3,5 +3,8 @@
     "host" : "localhost",
     "port" : 27017,
     "name" : "codedb"
+  },
+  "http" : {
+    "port" : 80
   }
 }
