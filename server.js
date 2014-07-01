@@ -61,7 +61,7 @@ db.open(function(error, mongoDb) {
       
       var doc = {
         _id: uuid.v4(),
-        code: req.body.code.substr(0, 10240),
+        code: req.body.code.substr(0, 51200),
         highlight: req.body.highlight,
         lifetime: req.body.lifetime,
         created: new Date()
