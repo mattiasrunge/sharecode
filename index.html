@@ -1,6 +1,6 @@
-<form role="form-inline" action="publish" method="post">
+<form action="publish" method="post">
   <div class="form-group">
-    <textarea name="code" class="form-control" maxlenght="1024" placeholder="Paste your code here..." data-bind="value: code, valueUpdate: 'input', style: { height: codeHeight() + 'px' }"></textarea>
+    <textarea name="code" class="form-control" maxlength="1024" placeholder="Paste your code here..." data-bind="value: code, valueUpdate: 'input', style: { height: codeHeight() + 'px' }"></textarea>
   </div>
   <div class="form-group">
     <select name="highlight" class="form-control" data-bind="value: highlight">
@@ -28,8 +28,8 @@
   </div>
 </form>
 
-<script type="text/javascript">
-  $(function() {
+<script type="text/javascript" async>
+  window.onload = function() {
     hljs.configure({
       tabReplace: '&nbsp;&nbsp;',
       useBR: true,
@@ -55,5 +55,5 @@
     };
     
     ko.applyBindings(new Model());
-  });
+  };
 </script>
