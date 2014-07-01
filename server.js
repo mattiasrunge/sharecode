@@ -45,6 +45,10 @@ db.open(function(error, mongoDb) {
     res.sendfile("./style.css");
   });
   
+  app.get("/favicon.ico", function(req, res) {
+    res.sendfile("./favicon.ico");
+  });
+  
   app.post("/publish", function(req, res) {
     db.collection("published", function(error, collection) {
       if (error) {
