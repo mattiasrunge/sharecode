@@ -5,6 +5,7 @@ var favicon = require("serve-favicon");
 var bodyParser = require("body-parser");
 var mongo = require("mongodb");
 var moment = require("moment");
+var uuid = require("node-uuid");
 var fs = require("fs");
 var config = require("./config.json");
 
@@ -59,7 +60,7 @@ db.open(function(error, mongoDb) {
       }
       
       var doc = {
-        _id: (new mongo.ObjectID()).toString(),
+        _id: uuid.v4(),
         code: req.body.code.substr(0, 1024),
         highlight: req.body.highlight,
         lifetime: req.body.lifetime,
