@@ -28,6 +28,8 @@
     });
     
     var Model = function() {
+      doc.code = window.atob(doc.code);
+      
       if (languages.indexOf(doc.highlight) !== -1) {
         var data = hljs.highlight(doc.highlight, doc.code);
         this.highlightedCode = ko.observable(hljs.fixMarkup(data.value));

@@ -112,6 +112,7 @@ db.open(function(error, mongoDb) {
         
         doc.created = moment(doc.created).format("dddd, MMMM Do YYYY, hh:mm:ss");
         doc.expires = moment(doc.expires).format("dddd, MMMM Do YYYY, hh:mm:ss");
+        doc.code = new Buffer(doc.code).toString("base64");
         
         renderTemplate(res, "show.html", { doc: JSON.stringify(doc, null, 2) });
       });
