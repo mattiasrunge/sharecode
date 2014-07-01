@@ -1,0 +1,59 @@
+<form role="form-inline" action="publish" method="post">
+  <div class="form-group">
+    <textarea name="code" class="form-control" maxlenght="1024" placeholder="Paste your code here..." data-bind="value: code, valueUpdate: 'input', style: { height: codeHeight() + 'px' }"></textarea>
+  </div>
+  <div class="form-group">
+    <select name="highlight" class="form-control" data-bind="value: highlight">
+      <option value="none">No highlighting</option>
+      <option value="cpp">C/C++</option>
+      <option value="java">Java</option>
+      <option value="javascript">Javascript</option>
+      <option value="python">Python</option>
+      <option value="perl">Perl</option>
+      <option value="ruby">Ruby</option>
+      <option value="php">PHP</option>
+      <option value="xml">XML</option>
+      <option value="css">CSS</option>
+      <option value="json">JSON</option>
+      <option value="bash">Bash</option>
+    </select>
+
+    <select name="lifetime" class="form-control">
+      <option value="day">Store one day</option>
+      <option value="week">Store one week</option>
+      <option value="month">Store one month</option>
+    </select>
+    
+    <button type="submit" class="btn btn-primary btn-lg">Publish</button>
+  </div>
+</form>
+
+<script type="text/javascript">
+  $(function() {
+    hljs.configure({
+      tabReplace: '&nbsp;&nbsp;',
+      useBR: true,
+      languages: [ "bash", "cpp", "css", "java", "javascript", "json", "perl", "php", "python", "ruby", "xml" ] 
+    });
+    
+    var Model = function() {
+      this.code = ko.observable("");
+      this.codeHeight = ko.observable().extend({ rateLimit: 100 });
+      this.highlight = ko.observable("none");
+      
+      this.code.subscribe(function(value) {
+        var data = hljs.highlightAuto(value);
+        this.highlight(data.language ? data.language : "none");
+      }.bind(this));
+      
+      window.onresize = function() {
+        var h = window.innerHeight - 210;
+        this.codeHeight(h < 200 ? 200 : h);
+      }.bind(this);
+      
+      window.onresize();
+    };
+    
+    ko.applyBindings(new Model());
+  });
+</script>

@@ -1,0 +1,24 @@
+{
+  "name"         : "codedb",
+  "version"      : "0.0.1",
+  "description"  : "",
+  "author"       : "Mattias Runge <mattias@runge.se>",
+  "repository"   : {
+    "type" : "git",
+    "url"  : "git://github.com/mattiasrunge/codedb.git"
+  },
+  "engines"      : {
+    "node": ">= 0.8.0"
+  },
+  "license"      : "GPLv2",
+  "dependencies" : {
+    "express"     : "4.4.5",
+    "body-parser" : "1.2.2",
+    "mongodb"     : "1.4.7",
+    "moment"      : "2.7.0",
+    "compression" : "1.0.8"
+  },
+  "devDependencies" : {
+    "jshint" : "~1.1.0"
+  }
+}

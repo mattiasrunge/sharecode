@@ -1,0 +1,39 @@
+<table class="code-table">
+  <tbody>
+    <tr>
+      <td class="code-ln" data-bind="foreach: lineNumbers">
+        <div data-bind="text: $data"></div>
+      </td>
+      <td class="code-block" data-bind="html: highlightedCode"></td>
+    </tr>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(function() {
+    var doc = {doc};
+    var languages = [ "bash", "cpp", "css", "java", "javascript", "json", "perl", "php", "python", "ruby", "xml" ];
+    
+    hljs.configure({
+      tabReplace: '&nbsp;&nbsp;',
+      languages: languages
+    });
+    
+    var Model = function() {
+      if (languages.indexOf(doc.highlight) !== -1) {
+        var data = hljs.highlight(doc.highlight, doc.code);
+        this.highlightedCode = ko.observable(hljs.fixMarkup(data.value));
+      } else {
+        this.highlightedCode = doc.code;
+      }
+      
+      this.lineNumbers = ko.observableArray();
+      
+      for (var n = 1; n <= doc.code.split(/\r\n|\r|\n/).length; n++) {
+        this.lineNumbers.push(n);
+      }
+    };
+    
+    ko.applyBindings(new Model());
+  });
+</script>
