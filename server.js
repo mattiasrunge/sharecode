@@ -1,6 +1,7 @@
 
 var express = require("express");
 var compression = require("compression");
+var favicon = require("serve-favicon");
 var bodyParser = require("body-parser");
 var mongo = require("mongodb");
 var moment = require("moment");
@@ -42,12 +43,12 @@ db.open(function(error, mongoDb) {
   });
 
   app.get("/style.css", function(req, res) {
+    res.setHeader("Cache-Control", "public, max-age=345600"); // 4 days
+    res.setHeader("Expires", new Date(Date.now() + 345600000).toUTCString());
     res.sendfile("./style.css");
   });
   
-  app.get("/favicon.ico", function(req, res) {
-    res.sendfile("./favicon.ico");
-  });
+  app.use(favicon("./favicon.ico", { maxAge: 2592000000 }));
   
   app.post("/publish", function(req, res) {
     db.collection("published", function(error, collection) {
