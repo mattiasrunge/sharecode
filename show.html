@@ -6,16 +6,18 @@
     Expires <strong data-bind="text: expires"></strong>
   </span>
 </div>
-<table class="code-table">
-  <tbody>
-    <tr>
-      <td class="code-ln" data-bind="foreach: lineNumbers">
-        <div data-bind="text: $data"></div>
-      </td>
-      <td class="code-block" data-bind="html: highlightedCode"></td>
-    </tr>
-  </tbody>
-</table>
+<div class="code-table">
+  <table>
+    <tbody>
+      <tr>
+        <td class="code-ln" data-bind="foreach: lineNumbers">
+          <div data-bind="text: $data"></div>
+        </td>
+        <td class="code-block" data-bind="html: highlightedCode"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <script type="text/javascript">
   window.onload = function() {

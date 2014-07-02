@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShareCode</title>
+    <title>ShareCode - Easily share code snippets with anyone</title>
+    
+    <meta name="description" content="With ShareCode you just paste your code snippet and easily share it with anyone you wish. Syntax highlighting is available for several different languages.">
+    <meta charset="utf-8">
     
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/superhero/bootstrap.min.css">
@@ -22,32 +25,27 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/languages/xml.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
     
-    <script>
-      (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
-
-      ga("create", "{gaId}", "auto");
-      ga("send", "pageview");
-    </script>
-    
     <style>
       body {
         padding-right: 20px;
         padding-left: 20px;
       }
 
-      .col-md-10 {
+      .col-md-9 {
         padding: 0;
       }
 
-      .col-md-2 {
+      .col-md-3 {
         padding-right: 0;
       }
 
-      .com {
+      .side {
         background-color: #4e5d6c;
+        
+      }
+      
+      .about {
+        padding: 20px;
       }
 
       .form-group button[type="submit"] {
@@ -77,6 +75,7 @@
         width: 100%;
         margin-bottom: 20px;
         background-color: #4e5d6c;
+        overflow: auto;
       }
 
       .code-block {
@@ -107,20 +106,39 @@
         </h1>
       </div>
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-9">
           {content}
         </div>
-        <div class="col-md-2">
-          <div class="com"></div>
+        <div class="col-md-3">
+          <div class="side">
+            <div class="about">
+              <h2>What is ShareCode?</h2>
+              <p>
+                ShareCode allows you to share nice looking code snippets with anyone. Just paste your code snippet and click <strong>Share</strong>. Then use the link to the snippet to share it with anyone you choose.
+              </p>
+              <p>
+                <strong>Syntax highlighting</strong> is provided for several different languages.
+              </p>
+              <p>
+                Code snippets can be a maximum of <strong>{sizeLimit}kb</strong>, will be stored for a maximum of <strong>one month</strong> and will only be available via the link you are redirect to after sharing.
+              </p>
+              <p>
+                We reserve the right to remove any content without notice if it violates our publishing <a href="/policy">policy</a>.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <p class="text-muted">
-          Code snippets can be a maximum of <strong>{sizeLimit}kb</strong>, will be stored for a maximum of <strong>one month</strong> and will only be visible via the link you are redirect to after sharing.<br>
-          
-          We reserve the right to remove any content without notice if it violates our publishing <a href="/policy">policy</a>.
-        </p>
-      </div>
     </div>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
+
+      ga("create", "{gaId}", "auto");
+      ga("send", "pageview");
+    </script>
   </body>
 </html>
