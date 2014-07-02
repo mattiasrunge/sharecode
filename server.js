@@ -14,6 +14,9 @@ var server = new mongo.Server(config.db.host, config.db.port, { auto_reconnect: 
 var db = new mongo.Db(config.db.name, server, { safe: true });
 var layout = fs.readFileSync("./template.html", "utf8");
 
+layout = layout.replace("{gaId}", config.gaId);
+layout = layout.replace("{sizeLimit}", Math.round(config.sizeLimit / 1024));
+
 function renderTemplate(res, template, data) {
   fs.readFile(template, "utf8", function(error, content) {
     if (data) {
@@ -36,17 +39,11 @@ db.open(function(error, mongoDb) {
   app.use(compression({ threshold: 512 }));
 
   app.get(/^\/(index\.html)?$/, function(req, res) {
-    renderTemplate(res, "publish.html");
+    renderTemplate(res, "publish.html", { sizeLimit: config.sizeLimit });
   });
   
   app.get("/policy", function(req, res) {
     renderTemplate(res, "policy.html");
-  });
-
-  app.get("/style.css", function(req, res) {
-    res.setHeader("Cache-Control", "public, max-age=345600"); // 4 days
-    res.setHeader("Expires", new Date(Date.now() + 345600000).toUTCString());
-    res.sendfile("./style.css");
   });
   
   app.use(favicon("./favicon.ico", { maxAge: 2592000000 }));
@@ -61,7 +58,7 @@ db.open(function(error, mongoDb) {
       
       var doc = {
         _id: uuid.v4(),
-        code: req.body.code.substr(0, 51200),
+        code: req.body.code.substr(0, config.sizeLimit),
         highlight: req.body.highlight,
         lifetime: req.body.lifetime,
         created: new Date()
