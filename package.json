@@ -12,13 +12,14 @@
   },
   "license"      : "GPLv2",
   "dependencies" : {
-    "express"       : "4.4.5",
-    "body-parser"   : "1.2.2",
-    "mongodb"       : "1.4.7",
-    "moment"        : "2.7.0",
-    "compression"   : "1.0.8",
-    "serve-favicon" : "2.0.1",
-    "node-uuid"     : "1.4.1"
+    "express"              : "4.4.5",
+    "body-parser"          : "1.2.2",
+    "mongodb"              : "1.4.7",
+    "moment"               : "2.7.0",
+    "compression"          : "1.0.8",
+    "serve-favicon"        : "2.0.1",
+    "node-uuid"            : "1.4.1",
+    "express-force-domain" : "0.0.6"
   },
   "devDependencies" : {
     "jshint" : "~1.1.0"

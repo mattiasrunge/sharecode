@@ -7,6 +7,7 @@
   "http" : {
     "port" : 80
   },
-  "sizeLimit" : 51200,
-  "gaId"      : "none"
+  "sizeLimit"   : 51200,
+  "gaId"        : "none",
+  "forceDomain" : false
 }

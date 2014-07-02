@@ -6,6 +6,8 @@ var bodyParser = require("body-parser");
 var mongo = require("mongodb");
 var moment = require("moment");
 var uuid = require("node-uuid");
+var forceDomain = require("express-force-domain");
+
 var fs = require("fs");
 var config = require("./config.json");
 
@@ -37,6 +39,10 @@ db.open(function(error, mongoDb) {
 
   app.use(bodyParser());
   app.use(compression({ threshold: 512 }));
+  
+  if (config.forceDomain) {
+    app.use(forceDomain(config.forceDomain));
+  }
 
   app.get(/^\/(index\.html)?$/, function(req, res) {
     renderTemplate(res, "publish.html", { sizeLimit: config.sizeLimit });
